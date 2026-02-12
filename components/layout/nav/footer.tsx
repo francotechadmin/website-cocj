@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Icon } from "../../icon";
 import { useLayout } from "../layout-context";
 
@@ -13,11 +14,14 @@ export const Footer = () => {
       <div className="mx-auto max-w-5xl px-6">
         <div className="mt-12 flex flex-wrap items-center gap-6 border-t py-6 flex-col md:flex-row md:justify-between">
 
-          <div className="order-last flex justify-center md:order-first md:justify-start">
+          <div className="order-last flex justify-center items-center md:order-first md:justify-start">
             <Link href="/" aria-label="go home">
-              <Icon
-                parentColor={header!.color!}
-                data={header!.icon}
+              <Image
+                src="/uploads/logo.png"
+                alt="Logo"
+                width={32}
+                height={32}
+                className="h-8 w-8"
               />
             </Link>
             <span className="self-center text-muted-foreground text-sm ml-2">© {new Date().getFullYear()} {header?.name}, All rights reserved</span>

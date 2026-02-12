@@ -2,12 +2,12 @@
 
 import React from "react";
 import Link from "next/link";
-import { Icon } from "../../icon";
+import Image from "next/image";
 import { useLayout } from "../layout-context";
 import { Menu, X } from "lucide-react";
 
 export const Header = () => {
-  const { globalSettings, theme } = useLayout();
+  const { globalSettings } = useLayout();
   const header = globalSettings!.header!;
 
   const [menuState, setMenuState] = React.useState(false)
@@ -22,16 +22,15 @@ export const Header = () => {
               <Link
                 href="/"
                 aria-label="home"
-                className="flex items-center space-x-2">
-                <Icon
-                  parentColor={header.color!}
-                  data={{
-                    name: header.icon!.name,
-                    color: header.icon!.color,
-                    style: header.icon!.style,
-                  }}
-                />{" "}
-                <span>
+                className="flex items-center space-x-3">
+                <Image
+                  src="/uploads/logo.png"
+                  alt="Logo"
+                  width={60}
+                  height={60}
+                  className="h-16 w-16re"
+                />
+                <span className="font-semibold text-lg">
                   {header.name}
                 </span>
               </Link>
