@@ -11,7 +11,7 @@ export const revalidate = 300;
 const PAGE_METADATA: Record<string, { title: string; description: string }> = {
   'about': {
     title: 'Acerca de la Conferencia',
-    description: 'Conoce la historia, misión y visión de Altar Familiar. Desde 2013, creando espacios para conectar a otros con Jesús a través de adoración, enseñanza y renovación espiritual.'
+    description: 'Conoce la historia, misión y visión de Conectando a Otros Con Jesus. Desde 2013, creando espacios para conectar a otros con Jesús a través de adoración, enseñanza y renovación espiritual.'
   },
   'gallery': {
     title: 'Galería de Fotos',
@@ -19,11 +19,11 @@ const PAGE_METADATA: Record<string, { title: string; description: string }> = {
   },
   'faq': {
     title: 'Preguntas Frecuentes',
-    description: 'Encuentra respuestas a las preguntas más comunes sobre la conferencia Altar Familiar 2026, incluyendo detalles de registro, ubicación y actividades.'
+    description: 'Encuentra respuestas a las preguntas más comunes sobre la conferencia Conectando a Otros Con Jesus 2026, incluyendo detalles de registro, ubicación y actividades.'
   },
   'contact': {
     title: 'Contacto',
-    description: 'Ponte en contacto con nosotros para más información sobre Altar Familiar 2026. Estamos aquí para ayudarte con cualquier pregunta.'
+    description: 'Ponte en contacto con nosotros para más información sobre Conectando a Otros Con Jesus 2026. Estamos aquí para ayudarte con cualquier pregunta.'
   },
 };
 
@@ -49,14 +49,14 @@ export async function generateMetadata({
 
   const metadata = PAGE_METADATA[pageName] || {
     title: pageName.charAt(0).toUpperCase() + pageName.slice(1),
-    description: 'Altar Familiar 2026 - Conectando a Otros con Jesús'
+    description: 'Conectando a Otros Con Jesus 2026 - Conectando a Otros con Jesús'
   };
 
   return {
     title: metadata.title,
     description: metadata.description,
     openGraph: {
-      title: `${metadata.title} | Altar Familiar 2026`,
+      title: `${metadata.title} | Conectando a Otros Con Jesus 2026`,
       description: metadata.description,
     },
   };

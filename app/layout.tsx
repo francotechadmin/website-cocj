@@ -27,22 +27,22 @@ const lato = Lato({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: {
-    default: "Altar Familiar 2026 - Conectando a Otros con Jesús",
-    template: "%s | Altar Familiar 2026"
+    default: "Conectando a Otros Con Jesus 2026",
+    template: "%s | Conectando a Otros Con Jesus 2026"
   },
   description: "Únete a nosotros del 11-13 de Septiembre 2026 para un fin de semana transformador de adoración, enseñanza bíblica y renovación espiritual. Conferencia anual diseñada para familias, jóvenes y creyentes.",
   keywords: ["conferencia cristiana", "altar familiar", "adoración", "conferencia familiar", "retiro espiritual", "conferencia 2026", "conferencia religiosa", "renovación espiritual"],
-  authors: [{ name: "Altar Familiar" }],
+  authors: [{ name: "Conectando a Otros Con Jesus" }],
   openGraph: {
-    title: "Altar Familiar 2026 - Conectando a Otros con Jesús",
+    title: "Conectando a Otros Con Jesus 2026 - Conectando a Otros con Jesús",
     description: "Conferencia anual del 11-13 de Septiembre 2026. Un fin de semana de adoración, compañerismo y renovación espiritual.",
     type: "website",
     locale: "es_ES",
-    siteName: "Altar Familiar 2026",
+    siteName: "Conectando a Otros Con Jesus 2026",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Altar Familiar 2026 - Conectando a Otros con Jesús",
+    title: "Conectando a Otros Con Jesus 2026 - Altar Familiar",
     description: "Conferencia anual del 11-13 de Septiembre 2026. Un fin de semana de adoración, compañerismo y renovación espiritual.",
   },
   viewport: {

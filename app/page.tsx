@@ -8,13 +8,13 @@ export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = "Inicio";
-  const description = "Únete a nosotros del 11-13 de Septiembre 2026 para Altar Familiar, un fin de semana transformador de adoración, enseñanza bíblica y renovación espiritual para toda la familia.";
+  const description = "Únete a nosotros del 11-13 de Septiembre 2026 para Conectando a Otros Con Jesus, un fin de semana transformador de adoración, enseñanza bíblica y renovación espiritual para toda la familia.";
 
   return {
     title,
     description,
     openGraph: {
-      title: `${title} | Altar Familiar 2026`,
+      title: `${title} | Conectando a Otros Con Jesus 2026`,
       description,
     },
   };
