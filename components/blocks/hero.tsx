@@ -42,34 +42,26 @@ const transitionVariants = {
 };
 
 export const Hero = ({ data }: { data: PageBlocksHero }) => {
-  // Extract the background style logic into a more readable format
-  let gradientStyle: React.CSSProperties | undefined = undefined;
-  if (data.background) {
-    const colorName = data.background
-      .replace(/\/\d{1,2}$/, '')
-      .split('-')
-      .slice(1)
-      .join('-');
-    const opacity = data.background.match(/\/(\d{1,3})$/)?.[1] || '100';
-
-    gradientStyle = {
-      '--tw-gradient-to': `color-mix(in oklab, var(--color-${colorName}) ${opacity}%, transparent)`,
-    } as React.CSSProperties;
-  }
-
   return (
     <Section background={data.background!}>
       <div className='text-center sm:mx-auto lg:mr-auto lg:mt-0'>
         {data.headline && (
           <div data-tina-field={tinaField(data, 'headline')}>
-            <TextEffect preset='fade-in-blur' speedSegment={0.3} as='h1' className='mt-8 text-balance text-6xl md:text-7xl xl:text-[5.25rem]'>
+            <h1 className='mt-8 text-balance text-6xl md:text-7xl xl:text-8xl font-extrabold bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 bg-clip-text text-transparent drop-shadow-lg whitespace-pre-line'>
               {data.headline!}
-            </TextEffect>
+            </h1>
           </div>
         )}
         {data.tagline && (
           <div data-tina-field={tinaField(data, 'tagline')}>
-            <TextEffect per='line' preset='fade-in-blur' speedSegment={0.3} delay={0.5} as='p' className='mx-auto mt-8 max-w-2xl text-balance text-lg'>
+            <TextEffect
+              per='line'
+              preset='fade-in-blur'
+              speedSegment={0.3}
+              delay={0.5}
+              as='p'
+              className='mx-auto mt-6 max-w-2xl text-balance text-2xl md:text-3xl font-semibold text-orange-800 dark:text-orange-200'
+            >
               {data.tagline!}
             </TextEffect>
           </div>
@@ -92,9 +84,8 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
       {data.image && (
         <AnimatedGroup variants={transitionVariants}>
-          <div className='relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20 max-w-full' data-tina-field={tinaField(data, 'image')}>
-            <div aria-hidden className='bg-linear-to-b absolute inset-0 z-10 from-transparent from-35% pointer-events-none' style={gradientStyle} />
-            <div className='inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1'>
+          <div className='relative mt-8 sm:mt-12 md:mt-16 max-w-full w-full' data-tina-field={tinaField(data, 'image')}>
+            <div className='relative mx-auto max-w-7xl overflow-hidden rounded-lg shadow-2xl'>
               <ImageBlock image={data.image} />
             </div>
           </div>
@@ -122,11 +113,12 @@ const ImageBlock = ({ image }: { image: PageBlocksHeroImage }) => {
   if (image.src) {
     return (
       <Image
-        className='z-2 border-border/25 aspect-15/8 relative rounded-2xl border max-w-full h-auto'
+        className='relative w-full h-auto rounded-lg'
         alt={image!.alt || ''}
         src={image!.src!}
-        height={4000}
-        width={3000}
+        height={1200}
+        width={1600}
+        priority
       />
     );
   }
