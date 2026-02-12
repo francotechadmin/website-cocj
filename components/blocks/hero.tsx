@@ -47,7 +47,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
       <div className='text-center sm:mx-auto lg:mr-auto lg:mt-0'>
         {data.headline && (
           <div data-tina-field={tinaField(data, 'headline')}>
-            <h1 className='mt-8 text-balance text-6xl md:text-7xl xl:text-8xl font-extrabold bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 bg-clip-text text-transparent drop-shadow-lg whitespace-pre-line'>
+            <h1 className='mt-8 text-balance text-5xl md:text-7xl xl:text-8xl font-extrabold bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 bg-clip-text text-transparent drop-shadow-lg whitespace-pre-line'>
               {data.headline!}
             </h1>
           </div>
