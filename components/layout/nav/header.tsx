@@ -15,64 +15,67 @@ export const Header = () => {
     <header>
       <nav
         data-state={menuState && 'active'}
-        className="bg-background/50 fixed z-20 w-full border-b backdrop-blur-3xl">
-        <div className="mx-auto max-w-6xl px-6 transition-all duration-300">
-          <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
-            <div className="flex w-full items-center justify-between gap-12">
-              <Link
-                href="/"
-                aria-label="home"
-                className="flex items-center space-x-3">
+        className="fixed z-50 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-800/50 shadow-sm">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo and brand */}
+            <Link
+              href="/"
+              aria-label="home"
+              className="flex items-center space-x-3 group">
+              <div className="relative">
                 <Image
                   src="/uploads/logo.png"
                   alt="Logo"
-                  width={60}
-                  height={60}
-                  className="h-16 w-16re"
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 transition-transform duration-300 group-hover:scale-110"
                 />
-                <span className="font-semibold text-lg">
-                  {header.name}
-                </span>
-              </Link>
-
-              <button
-                onClick={() => setMenuState(!menuState)}
-                aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
-                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
-              </button>
-
-              <div className="hidden lg:block">
-                <ul className="flex gap-8 text-sm">
-                  {header.nav!.map((item, index) => (
-                    <li key={index}>
-                      <Link
-                        href={item!.href!}
-                        className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                        <span>{item!.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
               </div>
+              <span className="hidden md:block font-bold text-base text-gray-900 dark:text-white transition-colors">
+                {header.name}
+              </span>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:block">
+              <ul className="flex items-center gap-1">
+                {header.nav!.map((item, index) => (
+                  <li key={index}>
+                    <Link
+                      href={item!.href!}
+                      className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-orange-900/20 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-200">
+                      {item!.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
-              <div className="lg:hidden">
-                <ul className="space-y-6 text-base">
-                  {header.nav!.map((item, index) => (
-                    <li key={index}>
-                      <Link
-                        href={item!.href!}
-                        className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                        <span>{item!.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setMenuState(!menuState)}
+              aria-label={menuState ? 'Close Menu' : 'Open Menu'}
+              className="relative z-20 p-2 lg:hidden rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 size-6 duration-200" />
+              <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="in-data-[state=active]:block lg:hidden hidden pb-6">
+            <ul className="space-y-1">
+              {header.nav!.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    href={item!.href!}
+                    className="block px-4 py-3 rounded-lg text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-orange-900/20 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-200"
+                    onClick={() => setMenuState(false)}>
+                    {item!.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </nav>

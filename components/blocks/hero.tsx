@@ -7,71 +7,44 @@ import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
 import { PageBlocksHero, PageBlocksHeroImage } from '../../tina/__generated__/types';
 import { Icon } from '../icon';
-import { Section, sectionBlockSchemaField } from '../layout/section';
-import { AnimatedGroup } from '../motion-primitives/animated-group';
-import { TextEffect } from '../motion-primitives/text-effect';
+import { sectionBlockSchemaField } from '../layout/section';
 import { Button } from '../ui/button';
 import HeroVideoDialog from '../ui/hero-video-dialog';
-import { Transition } from 'motion/react';
-const transitionVariants = {
-  container: {
-    visible: {
-      transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.75,
-      },
-    },
-  },
-  item: {
-    hidden: {
-      opacity: 0,
-      filter: 'blur(12px)',
-      y: 12,
-    },
-    visible: {
-      opacity: 1,
-      filter: 'blur(0px)',
-      y: 0,
-      transition: {
-        type: 'spring',
-        bounce: 0.3,
-        duration: 1.5,
-      } as Transition,
-    },
-  },
-};
 
 export const Hero = ({ data }: { data: PageBlocksHero }) => {
   return (
-    <Section background={data.background!}>
-      <div className='text-center sm:mx-auto lg:mr-auto lg:mt-0'>
+    <div className='relative min-h-screen flex items-center justify-center overflow-hidden'>
+      {/* Full-screen background image */}
+      {data.image && (
+        <div className='absolute inset-0 -z-10' data-tina-field={tinaField(data, 'image')}>
+          <ImageBlock image={data.image} />
+          {/* Dark overlay for text readability */}
+          <div className='absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60' />
+        </div>
+      )}
+
+      {/* Content overlay */}
+      <div className='relative z-10 mx-auto max-w-7xl px-6 py-20 text-center'>
         {data.headline && (
           <div data-tina-field={tinaField(data, 'headline')}>
-            <h1 className='mt-8 text-balance text-5xl md:text-7xl xl:text-8xl font-extrabold bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 bg-clip-text text-transparent drop-shadow-lg whitespace-pre-line'>
+            <h1 className='text-balance text-5xl md:text-7xl xl:text-8xl font-extrabold leading-tight text-white drop-shadow-2xl whitespace-pre-line mb-6'>
               {data.headline!}
             </h1>
           </div>
         )}
         {data.tagline && (
           <div data-tina-field={tinaField(data, 'tagline')}>
-            <TextEffect
-              per='line'
-              preset='fade-in-blur'
-              speedSegment={0.3}
-              delay={0.5}
-              as='p'
-              className='mx-auto mt-6 max-w-2xl text-balance text-2xl md:text-3xl font-semibold text-orange-800 dark:text-orange-200'
-            >
+            <p className='mt-6 max-w-3xl mx-auto text-balance text-2xl md:text-3xl font-semibold text-orange-200 drop-shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300'>
               {data.tagline!}
-            </TextEffect>
+            </p>
           </div>
         )}
 
-        <AnimatedGroup variants={transitionVariants} className='mt-12 flex flex-col items-center justify-center gap-2 md:flex-row'>
+        <div className='mt-12 flex flex-col items-center justify-center gap-4 md:flex-row animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500'>
           {data.actions &&
             data.actions.map((action) => (
-              <div key={action!.label} data-tina-field={tinaField(action)} className='bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5'>
-                <Button asChild size='lg' variant={action!.type === 'link' ? 'ghost' : 'default'} className='rounded-xl px-5 text-base'>
+              <div key={action!.label} data-tina-field={tinaField(action)} className='bg-white/10 backdrop-blur-sm rounded-[calc(var(--radius-xl)+0.125rem)] border border-white/20 p-0.5 hover:scale-105 hover:bg-white/20 transition-transform duration-200'>
+                <Button asChild size='lg' variant={action!.type === 'link' ? 'ghost' : 'default'} className='rounded-xl px-8 py-6 text-lg font-semibold bg-orange-600 hover:bg-orange-700 text-white'>
                   <Link href={action!.link!}>
                     {action?.icon && <Icon data={action?.icon} />}
                     <span className='text-nowrap'>{action!.label}</span>
@@ -79,19 +52,9 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
                 </Button>
               </div>
             ))}
-        </AnimatedGroup>
+        </div>
       </div>
-
-      {data.image && (
-        <AnimatedGroup variants={transitionVariants}>
-          <div className='relative mt-8 sm:mt-12 md:mt-16 max-w-full w-full' data-tina-field={tinaField(data, 'image')}>
-            <div className='relative mx-auto max-w-7xl overflow-hidden rounded-lg shadow-2xl'>
-              <ImageBlock image={data.image} />
-            </div>
-          </div>
-        </AnimatedGroup>
-      )}
-    </Section>
+    </div>
   );
 };
 
@@ -113,11 +76,10 @@ const ImageBlock = ({ image }: { image: PageBlocksHeroImage }) => {
   if (image.src) {
     return (
       <Image
-        className='relative w-full h-auto rounded-lg'
+        className='w-full h-full object-cover'
         alt={image!.alt || ''}
         src={image!.src!}
-        height={1200}
-        width={1600}
+        fill
         priority
       />
     );

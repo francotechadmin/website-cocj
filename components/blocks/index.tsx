@@ -9,6 +9,7 @@ import { Callout } from "./callout";
 import { Stats } from "./stats";
 import { CallToAction } from "./call-to-action";
 import { ImageText } from "./image-text";
+import { GalleryPreview } from "./gallery-preview";
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
   if (!props.blocks) return null;
@@ -45,6 +46,8 @@ const Block = (block: PageBlocks) => {
       return <CallToAction data={block} />;
     case "PageBlocksImageText":
       return <ImageText data={block} />;
+    case "PageBlocksGalleryPreview":
+      return <GalleryPreview data={block} />;
     default:
       return null;
   }
