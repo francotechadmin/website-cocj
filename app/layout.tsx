@@ -25,8 +25,39 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Tina",
-  description: "Tina Cloud Starter",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  title: {
+    default: "Altar Familiar 2026 - Conectando a Otros con Jesús",
+    template: "%s | Altar Familiar 2026"
+  },
+  description: "Únete a nosotros del 11-13 de Septiembre 2026 para un fin de semana transformador de adoración, enseñanza bíblica y renovación espiritual. Conferencia anual diseñada para familias, jóvenes y creyentes.",
+  keywords: ["conferencia cristiana", "altar familiar", "adoración", "conferencia familiar", "retiro espiritual", "conferencia 2026", "conferencia religiosa", "renovación espiritual"],
+  authors: [{ name: "Altar Familiar" }],
+  openGraph: {
+    title: "Altar Familiar 2026 - Conectando a Otros con Jesús",
+    description: "Conferencia anual del 11-13 de Septiembre 2026. Un fin de semana de adoración, compañerismo y renovación espiritual.",
+    type: "website",
+    locale: "es_ES",
+    siteName: "Altar Familiar 2026",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Altar Familiar 2026 - Conectando a Otros con Jesús",
+    description: "Conferencia anual del 11-13 de Septiembre 2026. Un fin de semana de adoración, compañerismo y renovación espiritual.",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ea580c" },
+    { media: "(prefers-color-scheme: dark)", color: "#ea580c" },
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -35,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn(fontSans.variable, nunito.variable, lato.variable)}>
+    <html lang="es" className={cn(fontSans.variable, nunito.variable, lato.variable)}>
       <body className="min-h-screen bg-background font-sans antialiased">
         <VideoDialogProvider>
           {children}

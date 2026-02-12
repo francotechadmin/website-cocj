@@ -1,4 +1,5 @@
 import React from 'react';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import client from '@/tina/__generated__/client';
 import Layout from '@/components/layout/layout';
@@ -6,6 +7,60 @@ import { Section } from '@/components/layout/section';
 import ClientPage from './client-page';
 
 export const revalidate = 300;
+
+const PAGE_METADATA: Record<string, { title: string; description: string }> = {
+  'about': {
+    title: 'Acerca de la Conferencia',
+    description: 'Conoce la historia, misión y visión de Altar Familiar. Desde 2013, creando espacios para conectar a otros con Jesús a través de adoración, enseñanza y renovación espiritual.'
+  },
+  'gallery': {
+    title: 'Galería de Fotos',
+    description: 'Explora los momentos memorables de nuestras conferencias anteriores. Revive la adoración, compañerismo y bendiciones de años pasados.'
+  },
+  'faq': {
+    title: 'Preguntas Frecuentes',
+    description: 'Encuentra respuestas a las preguntas más comunes sobre la conferencia Altar Familiar 2026, incluyendo detalles de registro, ubicación y actividades.'
+  },
+  'contact': {
+    title: 'Contacto',
+    description: 'Ponte en contacto con nosotros para más información sobre Altar Familiar 2026. Estamos aquí para ayudarte con cualquier pregunta.'
+  },
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ urlSegments: string[] }>;
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const filepath = resolvedParams.urlSegments.join('/');
+  const pageName = resolvedParams.urlSegments[0] || 'home';
+
+  let data;
+  try {
+    data = await client.queries.page({
+      relativePath: `${filepath}.mdx`,
+    });
+  } catch (error) {
+    return {
+      title: 'Página no encontrada',
+    };
+  }
+
+  const metadata = PAGE_METADATA[pageName] || {
+    title: pageName.charAt(0).toUpperCase() + pageName.slice(1),
+    description: 'Altar Familiar 2026 - Conectando a Otros con Jesús'
+  };
+
+  return {
+    title: metadata.title,
+    description: metadata.description,
+    openGraph: {
+      title: `${metadata.title} | Altar Familiar 2026`,
+      description: metadata.description,
+    },
+  };
+}
 
 export default async function Page({
   params,
