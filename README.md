@@ -1,6 +1,6 @@
-# Church of Christ Jacksonville — Website
+# Conference — Connectando a Otros con Jesus
 
-The official website for the Church of Christ Jacksonville conference, built with **Next.js** and powered by **TinaCMS** for visual content editing.
+The official website for the **Connectando a Otros con Jesus** conference, built with **Next.js** and powered by **TinaCMS** for visual content editing.
 
 🔗 **Live site:** [website-cocj.vercel.app](https://website-cocj.vercel.app)
 
