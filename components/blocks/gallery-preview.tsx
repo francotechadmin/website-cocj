@@ -35,7 +35,7 @@ export const GalleryPreview = ({ data }: any) => {
           {data.images &&
             data.images.map((image: any, index: number) => (
               <div
-                key={index}
+                key={image.src || index}
                 data-tina-field={tinaField(image, 'src')}
                 className='group relative aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300'
               >

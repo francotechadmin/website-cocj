@@ -26,6 +26,7 @@ const VideoDialog = () => {
                     >
                         <motion.button
                             onClick={closeVideo}
+                            aria-label="Close video"
                             className="absolute -top-16 right-0 rounded-full bg-neutral-900/50 p-2 text-xl text-white ring-1 backdrop-blur-md dark:bg-neutral-100/50 dark:text-black"
                         >
                             <XIcon className="size-5" />
@@ -34,6 +35,7 @@ const VideoDialog = () => {
                             <iframe
                                 src={videoUrl}
                                 className="size-full rounded-2xl"
+                                title="Video player"
                                 allowFullScreen
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             ></iframe>

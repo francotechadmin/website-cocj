@@ -77,7 +77,7 @@ const ImageBlock = ({ image }: { image: PageBlocksHeroImage }) => {
     return (
       <Image
         className='w-full h-full object-cover'
-        alt={image!.alt || ''}
+        alt={image!.alt || 'Hero background'}
         src={image!.src!}
         fill
         priority
