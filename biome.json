@@ -110,7 +110,7 @@
 						"noNewSymbol": "off",
 						"noSetterReturn": "off",
 						"noUndeclaredVariables": "off",
-						"noUnreachable": "off",
+						"noUnreachable": "error",
 						"noUnreachableSuper": "off"
 					},
 					"style": {
@@ -120,14 +120,14 @@
 					},
 					"suspicious": {
 						"noDuplicateClassMembers": "off",
-						"noDuplicateObjectKeys": "off",
-						"noDuplicateParameters": "off",
+						"noDuplicateObjectKeys": "error",
+						"noDuplicateParameters": "error",
 						"noFunctionAssign": "off",
 						"noImportAssign": "off",
 						"noRedeclare": "off",
 						"noUnsafeNegation": "off",
 						"useGetterReturn": "off",
-						"useValidTypeof": "off"
+						"useValidTypeof": "error"
 					}
 				}
 			}
