@@ -1,14 +1,13 @@
 'use client';
-//TODO: Fix Types in this file
-//
+
 import * as BoxIcons from 'react-icons/bi';
 import { FaFacebookF, FaGithub, FaLinkedin, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 import { AiFillInstagram } from 'react-icons/ai';
 import React from 'react';
 import { useLayout } from './layout/layout-context';
 
-export const IconOptions = {
-  Tina: (props: any) => (
+export const IconOptions: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
+  Tina: (props: React.SVGProps<SVGSVGElement>) => (
     <svg {...props} viewBox='0 0 66 80' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <title>Tina</title>
       <path
@@ -80,22 +79,32 @@ const iconSizeClass = {
   custom: '',
 };
 
-//@ts-ignore
-export const Icon = ({ data, parentColor = '', className = '', tinaField = '' }) => {
+interface IconData {
+  name: string;
+  color?: string;
+  size?: string;
+  style?: string;
+}
+
+interface IconProps {
+  data: IconData;
+  parentColor?: string;
+  className?: string;
+  tinaField?: string;
+}
+
+export const Icon = ({ data, parentColor = '', className = '', tinaField = '' }: IconProps) => {
   const { theme } = useLayout();
 
-  //@ts-ignore
-  if (IconOptions[data.name] === null || IconOptions[data.name] === undefined) {
+  if (!IconOptions[data.name]) {
     return null;
   }
 
   const { name, color, size = 'medium', style = 'regular' } = data;
 
-  //@ts-ignore
   const IconSVG = IconOptions[name];
 
-  //@ts-ignore
-  const iconSizeClasses = typeof size === 'string' ? iconSizeClass[size] : iconSizeClass[Object.keys(iconSizeClass)[size]];
+  const iconSizeClasses = iconSizeClass[size as keyof typeof iconSizeClass] ?? '';
 
   const iconColor = color ? (color === 'primary' ? theme!.color : color) : theme!.color;
 
