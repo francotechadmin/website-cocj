@@ -17,9 +17,18 @@ next-env.d.ts
 
 # misc
 .DS_Store
-.env
-.env.local
+.env*
+!.env.example
 .idea
+
+# vercel
+.vercel/
+
+# turbopack
+.turbo/
+
+# typescript
+tsconfig.tsbuildinfo
 
 # debug
 npm-debug.log*
