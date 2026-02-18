@@ -1,5 +1,5 @@
 import React from "react";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { Inter as FontSans, Lato, Nunito } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { VideoDialogProvider } from "@/components/ui/VideoDialogContext";
@@ -45,19 +45,20 @@ export const metadata: Metadata = {
     title: "Conectando a Otros Con Jesus 2026 - Altar Familiar",
     description: "Conferencia anual del 11-13 de Septiembre 2026. Un fin de semana de adoración, compañerismo y renovación espiritual.",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ea580c" },
-    { media: "(prefers-color-scheme: dark)", color: "#ea580c" },
-  ],
   robots: {
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ea580c" },
+    { media: "(prefers-color-scheme: dark)", color: "#ea580c" },
+  ],
 };
 
 export default function RootLayout({
