@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import type { Template } from 'tinacms';
 import { cn } from '../../lib/utils';
 
 interface SectionProps extends React.HTMLProps<HTMLElement> {
@@ -43,7 +44,7 @@ export const tailwindBackgroundOptions = [
   { label: "Rose", value: "bg-rose-50/80" },
 ];
 
-export const sectionBlockSchemaField = {
+export const sectionBlockSchemaField: Template['fields'][number] = {
   type: "string",
   label: "Background",
   name: "background",

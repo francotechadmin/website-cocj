@@ -42,13 +42,13 @@
 		"rules": {
 			"recommended": false,
 			"complexity": {
-				"noBannedTypes": "off",
+				"noBannedTypes": "warn",
 				"noUselessTypeConstraint": "error"
 			},
 			"correctness": {
 				"noInvalidUseBeforeDeclaration": "off",
 				"noPrecisionLoss": "error",
-				"noUnusedVariables": "off",
+				"noUnusedVariables": "warn",
 				"useArrayLiterals": "off",
 				"useExhaustiveDependencies": "off",
 				"useHookAtTopLevel": "warn"
@@ -56,14 +56,14 @@
 			"style": {
 				"noInferrableTypes": "off",
 				"noNamespace": "error",
-				"noNonNullAssertion": "off",
+				"noNonNullAssertion": "warn",
 				"useAsConstAssertion": "warn",
 				"useBlockStatements": "off",
 				"useConst": "warn"
 			},
 			"suspicious": {
 				"noEmptyBlockStatements": "off",
-				"noExplicitAny": "off",
+				"noExplicitAny": "warn",
 				"noExtraNonNullAssertion": "error",
 				"noMisleadingInstantiator": "error",
 				"useNamespaceKeyword": "error"

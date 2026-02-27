@@ -26,8 +26,7 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
 
   const inputLabel = Object.keys(IconOptions).includes(input.value) ? parseIconName(input.value) : 'Select Icon';
 
-  //@ts-ignore
-  const InputIcon = IconOptions[input.value] ? IconOptions[input.value] : null;
+  const InputIcon = input.value && IconOptions[input.value] ? IconOptions[input.value] : null;
 
   return (
     <div className='relative z-[1000]'>
@@ -58,12 +57,12 @@ export const IconPickerInput = wrapFieldsWithMeta(({ input }) => {
                         <input
                           type='text'
                           className='bg-white text-sm rounded-sm border border-gray-100 shadow-inner py-1.5 px-2.5 w-full block placeholder-gray-200'
-                          onClick={(event: any) => {
+                          onClick={(event: React.MouseEvent<HTMLInputElement>) => {
                             event.stopPropagation();
                             event.preventDefault();
                           }}
                           value={filter}
-                          onChange={(event: any) => {
+                          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                             setFilter(event.target.value);
                           }}
                           placeholder='Filter...'

@@ -3,10 +3,11 @@ import Image from 'next/image';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { PageBlocksImageText } from '../../tina/__generated__/types';
 import { Section } from '../layout/section';
 import { sectionBlockSchemaField } from '../layout/section';
 
-export const ImageText = ({ data }: any) => {
+export const ImageText = ({ data }: { data: PageBlocksImageText }) => {
   const imageOnRight = data.imagePosition === 'right';
 
   return (
@@ -17,7 +18,7 @@ export const ImageText = ({ data }: any) => {
             {data.featureImage && (
               <div data-tina-field={tinaField(data, 'featureImage')} className="relative w-full h-96 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src={data.featureImage} // FIX HERE
+                  src={data.featureImage}
                   alt={data.imageAlt || 'Image'}
                   fill
                   className="object-cover"
@@ -35,7 +36,7 @@ export const ImageText = ({ data }: any) => {
               </h2>
             )}
             <div data-tina-field={tinaField(data, 'bodyText')} className="prose dark:prose-dark max-w-none">
-              <TinaMarkdown content={data.bodyText} /> {/* FIX HERE */}
+              <TinaMarkdown content={data.bodyText} />
             </div>
           </div>
         </div>
@@ -56,7 +57,7 @@ export const imageTextBlockSchema: Template = {
     },
   },
   fields: [
-    sectionBlockSchemaField as any,
+    sectionBlockSchemaField,
     {
       type: 'string',
       label: 'Title',
